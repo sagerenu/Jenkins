@@ -1,0 +1,15 @@
+#!/bin/bash
+read -p  "Enter the ec2 instance_id"   instance_id
+echo "$instance_id"
+read -p "Enter the instance region" region
+echo $region
+read -p "provide the required state of instance"  state
+echo "$state"
+if [ "$state" == "start" ];then
+	 aws ec2 start-instances --instance-ids $instance_id --region $region
+
+elif [ "$state" == "stop" ];then
+	aws ec2 stop-instances --instance-ids $instance_id --region $region
+else
+	echo "provided option is not a valid state of the instance"
+fi
